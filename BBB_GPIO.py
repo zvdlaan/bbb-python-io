@@ -24,24 +24,42 @@ class GPIO_PIN_BASE:
     	raise Exception("Didn't initialize properly")
     else:
     	print "initialized properly"
-    	setDirection = self.SetDirection(pinNum, direction)
+    	setDirection = self.SetDirection()
     	if setDirection['returncode'] != 0 :
     		raise Exception("Didn't set direction properly")
     	else:
    		print "set direction properly"
-    		#if self.direction == 'out':  
+    		if self.direction == 'out':
+    			self.SetOutputLow()
+    		else:
+    			"""implement input stuff someday"
       
   def InitializeGpioPin(self):
     command = """sudo sh -c "echo '""" + str(self.pinNum) + """' > /sys/class/gpio/export" """ 
     return RunCommand( command )
    
    
-  def SetDirection(self, pinNum, direction):
-    if direction == 'out':
-    	command = """sudo sh -c "echo 'low' > /sys/class/gpio/gpio""" + str(pinNum) + """/direction" """ 
+  def SetDirection(self):
+    if self.direction == 'out':
+    	command = """sudo sh -c "echo 'low' > /sys/class/gpio/gpio""" + str(self.pinNum) + """/direction" """ 
     else:
-    	command = """sudo sh -c "echo 'in' > /sys/class/gpio/gpio""" + str(pinNum) + """/direction" """
+    	command = """sudo sh -c "echo 'in' > /sys/class/gpio/gpio""" + str(self.pinNum) + """/direction" """
     return RunCommand( command )
-
-	
+    
+    
+  def SetOutputHigh(self):
+  	if self.direction != 'out':
+    		raise Exception('Cannot set output value if pin has not been configured as output')
+	else:
+  		command = """sudo sh -c "echo '1' > /sys/class/gpio/gpio""" + str(self.pinNum) + """/value" """ 
+  		return RunCommand( command )
+ 
+ 
+  def SetOutputLow(self):
+  	if self.direction != 'out':
+    		raise Exception('Cannot set output value if pin has not been configured as output')
+	else:
+  		command = """sudo sh -c "echo '0' > /sys/class/gpio/gpio""" + str(self.pinNum) + """/value" """ 
+  		return RunCommand( command )
+ 
  
