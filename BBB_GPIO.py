@@ -19,7 +19,8 @@ class GPIO_PIN_BASE:
       self.direction = 'in'
     else:
       self.direction = 'out'
-    output = RunCommand( 'sudo su')
+    command = """sudo su; echo """ +  str(self.pinNum) + """ > /sys/class/gpio/export """ 
+    output = RunCommand( command )
     print output['returncode']
     print output['output']
     print output['error']
