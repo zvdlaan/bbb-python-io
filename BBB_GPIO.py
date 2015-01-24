@@ -2,7 +2,7 @@
 
 
 
-class BBB_GPIO_PIN:
+class GPIO_PIN:
   
   def __init__(self,pinNum,direction):
     if direction not in ['in', 'In', 'IN', 'out', 'Out', 'OUT']:
