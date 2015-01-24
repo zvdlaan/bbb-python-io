@@ -1,7 +1,7 @@
 # BBB_GPIO
 
 
-def RunCommand(self, command ):
+def RunCommand( command ):
 	process = subprocess.Popen( command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True )	
 	response = process.communicate()
 	returnDict = { 'returncode': process.returncode, 'output':response[0].rstrip(), 'error': response[1].rstrip() }
