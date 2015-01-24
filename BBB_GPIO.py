@@ -19,29 +19,30 @@ class GPIO_PIN_BASE:
       self.direction = 'in'
     else:
       self.direction = 'out'
-    self.InitializeGpioPin(pinNum)
-    self.SetDirection(pinNum, direction)
-    if self.direction == 'out':
-    	"""self.SetOutputLow(pinNum)"""
-    	""" ddd """
+    initialize = self.InitializeGpioPin(pinNum)
+    if not (initialize['returncode'] == 0 or ( initialize['returncode'] == 1 and initialize['error'] == "")):
+    	raise Exception("Didn't initialize properly")
+    else:
+    	setDirection = self.SetDirection(pinNum, direction)
+    	if not (setDirection['returncode'] == 0 or (setDirection['returncode'] == 1 and setDirection['error'] == "")):
+    		raise Exception("Didn't set direction properly")
+    	else:
+    		 if self.direction == 'out':
+    			"""self.SetOutputLow(pinNum)"""
+    			""" ddd """
       
   def InitializeGpioPin(self, pinNum):
     command = """sudo sh -c "echo '""" + str(pinNum) + """' > /sys/class/gpio/export" """ 
     print command
-    initialize = RunCommand( command )
-    print("returncode: " + str(initialize['returncode']))
-    print("output: " + initialize['output'])
-    print("error: " + initialize['error'])
+    return RunCommand( command )
+   
    
   def SetDirection(self, pinNum, direction):
     if direction == 'out':
     	command = """sudo sh -c "echo 'low' > /sys/class/gpio/gpio""" + str(pinNum) + """/direction" """ 
     else:
     	command = """sudo sh -c "echo 'in' > /sys/class/gpio/gpio""" + str(pinNum) + """/direction" """
-    print command
-    setDir = RunCommand( command )
-    print("returncode: " + str(setDir['returncode']))
-    print("output: " + setDir['output'])
-    print("error: " + setDir['error'])
+    return RunCommand( command )
+
 	
  
