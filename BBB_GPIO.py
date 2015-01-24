@@ -19,7 +19,7 @@ class GPIO_PIN_BASE:
       self.direction = 'in'
     else:
       self.direction = 'out'
-    initialize = self.InitializeGpioPin(pinNum)
+    initialize = self.InitializeGpioPin()
     if not (initialize['returncode'] == 0 or ( initialize['returncode'] == 1 and initialize['error'] == "")):
     	raise Exception("Didn't initialize properly")
     else:
@@ -33,8 +33,8 @@ class GPIO_PIN_BASE:
     			"""self.SetOutputLow(pinNum)"""
     			""" ddd """
       
-  def InitializeGpioPin(self, pinNum):
-    command = """sudo sh -c "echo '""" + str(pinNum) + """' > /sys/class/gpio/export" """ 
+  def InitializeGpioPin(self):
+    command = """sudo sh -c "echo '""" + str(self.pinNum) + """' > /sys/class/gpio/export" """ 
     print command
     return RunCommand( command )
    
