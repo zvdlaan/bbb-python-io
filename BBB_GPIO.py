@@ -33,7 +33,6 @@ class GPIO_PIN_BASE:
       
   def InitializeGpioPin(self):
     command = """sudo sh -c "echo '""" + str(self.pinNum) + """' > /sys/class/gpio/export" """ 
-    print command
     return RunCommand( command )
    
    
