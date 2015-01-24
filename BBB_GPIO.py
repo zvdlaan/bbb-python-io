@@ -30,7 +30,11 @@ class GPIO_PIN_BASE:
     	else:
    		print "set direction properly"
     		if self.direction == 'out':
-    			self.SetOutputLow()
+    			setOutputLow = self.SetOutputLow()
+    			if setOutputLow['returncode'] != 0:
+    				raise Exception("Didn't set output value properly")
+    			else:
+    				print "set output low successfully"
     		else:
     			"""implement input stuff someday"""
       
