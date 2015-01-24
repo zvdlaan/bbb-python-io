@@ -69,7 +69,7 @@ class GPIO_PIN_BASE:
  
 class GPIO_PIN_OUTPUT(GPIO_PIN_BASE):
  	
-	def __init__(self,pinNum)
+	def __init__(self,pinNum ):
 		self.pinNum = pinNum
 		self.direction = 'out'
  	
