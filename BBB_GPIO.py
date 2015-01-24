@@ -32,7 +32,7 @@ class GPIO_PIN_BASE:
     		if self.direction == 'out':
     			self.SetOutputLow()
     		else:
-    			"""implement input stuff someday"
+    			"""implement input stuff someday"""
       
   def InitializeGpioPin(self):
     command = """sudo sh -c "echo '""" + str(self.pinNum) + """' > /sys/class/gpio/export" """ 
