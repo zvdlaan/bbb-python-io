@@ -21,7 +21,7 @@ class GPIO_PIN_BASE:
       self.direction = 'out'
     self.InitializeGpioPin(pinNum)
     self.SetDirection(pinNum, direction)
-    if self.direction = 'out':
+    if self.direction == 'out':
     	"""self.SetOutputLow(pinNum)"""
     	""" ddd """
       
