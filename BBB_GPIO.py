@@ -35,9 +35,9 @@ class GPIO_PIN_BASE:
    
   def SetDirection(self, pinNum, direction):
     if direction == 'out':
-    	command = """sudo sh -c "echo 'low' > /sys/glass/gpio/gpio""" + str(pinNum) + """/direction" """ 
+    	command = """sudo sh -c "echo 'low' > /sys/class/gpio/gpio""" + str(pinNum) + """/direction" """ 
     else:
-    	command = """sudo sh -c "echo 'in' > /sys/glass/gpio/gpio""" + str(pinNum) + """/direction" """
+    	command = """sudo sh -c "echo 'in' > /sys/class/gpio/gpio""" + str(pinNum) + """/direction" """
     print command
     setDir = RunCommand( command )
     print("returncode: " + str(setDir['returncode']))
