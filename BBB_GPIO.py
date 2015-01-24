@@ -23,11 +23,13 @@ class GPIO_PIN_BASE:
     if not (initialize['returncode'] == 0 or ( initialize['returncode'] == 1 and initialize['error'] == "")):
     	raise Exception("Didn't initialize properly")
     else:
+    	print "initialized properly"
     	setDirection = self.SetDirection(pinNum, direction)
-    	if not (setDirection['returncode'] == 0 or (setDirection['returncode'] == 1 and setDirection['error'] == "")):
+    	if setDirection['returncode'] != 0 :
     		raise Exception("Didn't set direction properly")
     	else:
-    		 if self.direction == 'out':
+   		print "set direction properly"
+    		if self.direction == 'out':
     			"""self.SetOutputLow(pinNum)"""
     			""" ddd """
       
