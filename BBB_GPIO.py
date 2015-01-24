@@ -19,13 +19,29 @@ class GPIO_PIN_BASE:
       self.direction = 'in'
     else:
       self.direction = 'out'
-    self.ExportToGpioLib(pinNum)
+    self.InitializeGpioPin(pinNum)
+    self.SetDirection(pinNum, direction)
+    if self.direction = 'out':
+    	"""self.SetOutputLow(pinNum)"""
+    	""" ddd """
       
-  def ExportToGpioLib(self, pinNum):
+  def InitializeGpioPin(self, pinNum):
     command = """sudo sh -c "echo '""" + str(pinNum) + """' > /sys/class/gpio/export" """ 
     print command
-    export = RunCommand( command )
-    print("returncode: " + str(export['returncode']))
-    print("output: " + export['output'])
-    print("error: " + export['error'])
-    
+    initialize = RunCommand( command )
+    print("returncode: " + str(initialize['returncode']))
+    print("output: " + initialize['output'])
+    print("error: " + initialize['error'])
+   
+  def SetDirection(self, pinNum, direction):
+    if direction == 'out':
+    	command = """sudo sh -c "echo 'low' > /sys/glass/gpio/gpio""" + str(pinNum) + """/direction" """ 
+    else:
+    	command = """sudo sh -c "echo 'in' > /sys/glass/gpio/gpio""" + str(pinNum) + """/direction" """
+    print command
+    setDir = RunCommand( command )
+    print("returncode: " + str(setDir['returncode']))
+    print("output: " + setDir['output'])
+    print("error: " + setDir['error'])
+	
+ 
