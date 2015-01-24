@@ -19,7 +19,7 @@ class GPIO_PIN_BASE:
       self.direction = 'in'
     else:
       self.direction = 'out'
-    ExportToGpioLib(pinNum)
+    self.ExportToGpioLib(pinNum)
       
   def ExportToGpioLib(self, pinNum):
     command = """sudo sh -c "echo '""" + str(pinNum) + """' > /sys/class/gpio/export" """ 
