@@ -1,5 +1,7 @@
 # BBB_GPIO
-
+import sys
+import subprocess 
+import string
 
 def RunCommand( command ):
 	process = subprocess.Popen( command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True )	
